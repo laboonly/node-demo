@@ -1,17 +1,17 @@
 const express = require('express')
 const app = express()
+import router from './routes/index.js';
+
 const port = 3000
 
-function loginMiddleware(req, res, next) {
-    const time = new Date()
-    console.log(`[${time.toString()}] ${req.method} ${req.url}`)
-    next()
-}
 
-app.use(loginMiddleware)
-app.use(express.static('public'));
 
-app.get('/', (req, res) => res.render('index'))
+router(app);
+
+
+// app.use(express.static('public'));
+
+// app.get('/', (req, res) => res.render('index'))
 
 app.get('/getuserInfo', (req, res) => res.send({
     "code": 20000,
